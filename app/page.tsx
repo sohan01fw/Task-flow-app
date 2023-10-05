@@ -4,8 +4,6 @@ export default function Home() {
       <div className="title">
         This is my Taskflow app with bun and hanko🚀🤖❤️😊
       </div>
-      <div className="div">this is the description omg </div>
-      <div className="ok"></div>
     </main>
   );
 }
