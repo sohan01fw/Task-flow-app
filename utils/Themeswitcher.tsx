@@ -3,15 +3,13 @@ import React from "react";
 import { useTheme } from "next-themes";
 
 const ThemeSwitcher = () => {
-  const { systemTheme, theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   const renderThemeChanger = () => {
-    const currentTheme = theme === "system" ? systemTheme : theme;
-
-    if (currentTheme === "dark") {
+    if (theme === "dark") {
       return (
         <button
-          className="w-6 h-6 text-yellow-500 "
+          className="w-6 h-6 text-yellow-500 m-10 "
           onClick={() => setTheme("light")}
         >
           light
@@ -20,9 +18,11 @@ const ThemeSwitcher = () => {
     } else {
       return (
         <button
-          className="w-6 h-6 text-gray-900 "
+          className="w-6 h-6 text-gray-900 m-10"
           onClick={() => setTheme("dark")}
-        ></button>
+        >
+          Dark
+        </button>
       );
     }
   };
