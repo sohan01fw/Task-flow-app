@@ -1,8 +1,9 @@
-// app/components/ThemeSwitcher.tsx
 "use client";
-
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { Switch } from "@nextui-org/react";
+import { MoonIcon } from "./Moon";
+import { SunIcon } from "./sun";
 
 export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
@@ -12,13 +13,19 @@ export function ThemeSwitcher() {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null;
+  const switchIcons = () => {
+    const selectedIcon = theme === "light" ? <SunIcon /> : <MoonIcon />;
 
-  return (
-    <div>
-      The current theme is: {theme}
-      <button onClick={() => setTheme("light")}>Light Mode</button>
-      <button onClick={() => setTheme("dark")}>Dark Mode</button>
-    </div>
-  );
+    return (
+      <Switch
+        size="md"
+        thumbIcon={selectedIcon}
+        onChange={() => setTheme(theme === "light" ? "dark" : "light")}
+      />
+    );
+  };
+
+  if (!mounted) return switchIcons();
+
+  return switchIcons();
 }
