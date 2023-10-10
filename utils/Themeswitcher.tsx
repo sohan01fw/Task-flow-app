@@ -1,42 +1,24 @@
+// app/components/ThemeSwitcher.tsx
 "use client";
-import React, { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
-import loadConfig from "next/dist/server/config";
 
-const ThemeSwitcher = () => {
-  const { theme, setTheme } = useTheme();
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+
+export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return <p>loading...</p>;
-  }
-  const renderThemeChanger = () => {
-    if (theme === "dark") {
-      return (
-        <button
-          className="w-6 h-6 text-yellow-500 m-10 "
-          onClick={() => setTheme("light")}
-        >
-          light
-        </button>
-      );
-    } else {
-      return (
-        <button
-          className="w-6 h-6 text-gray-900 m-10"
-          onClick={() => setTheme("dark")}
-        >
-          Dark
-        </button>
-      );
-    }
-  };
+  if (!mounted) return null;
 
-  return <>{renderThemeChanger()}</>;
-};
-
-export default ThemeSwitcher;
+  return (
+    <div>
+      The current theme is: {theme}
+      <button onClick={() => setTheme("light")}>Light Mode</button>
+      <button onClick={() => setTheme("dark")}>Dark Mode</button>
+    </div>
+  );
+}
